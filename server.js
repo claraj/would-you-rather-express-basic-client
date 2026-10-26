@@ -6,8 +6,13 @@ const indexRouter = require('./routes/index')
 // Create the web application
 const app = express() 
 
-// make the routes in index.js available to the app 
+// serve files in the client directory directly to the user 
+app.use('/', express.static('client'))
+
+// make the API routes in index.js available to the app 
 app.use('/', indexRouter)
+
+
 
 // Start server running 
 let server = app.listen(process.env.PORT || 3000, function() {
