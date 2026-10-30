@@ -1,22 +1,21 @@
 const express = require('express')
 
-// import the routes in routes/index.js
-const indexRouter = require('./routes/index')
+// import the routes in routes/api.js
+const apiRouter = require('./routes/api')
 
 // Create the web application
 const app = express() 
 
-// serve files in the client directory directly to the user 
+// serve files in the client directory directly to the user.
 app.use('/', express.static('client'))
 
-// make the API routes in index.js available to the app 
-app.use('/', indexRouter)
+// make the API routes in api.js available to the app 
+app.use('/api', apiRouter)
 
-
-
+const port = process.env.PORT || 3000
 // Start server running 
-let server = app.listen(process.env.PORT || 3000, function() {
-    console.log('Express server running on port', server.address().port)
+let server = app.listen(port, function() {
+    console.log('Express server running on port', port)
 })
 
 
